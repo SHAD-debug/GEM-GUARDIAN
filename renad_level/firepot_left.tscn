@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqj7oiqqh41wr"]
+
+[ext_resource type="PackedScene" uid="uid://dr0lt1p84bafo" path="res://renad_level/firepot.tscn" id="1_cwi1c"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="firepot" parent="." instance=ExtResource("1_cwi1c")]
+rotation = -1.5707964

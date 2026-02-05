@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqpebkhty73o0"]
+
+[ext_resource type="PackedScene" uid="uid://blas3pwvppb0y" path="res://renad_level/tile_map.tscn" id="1_u3y5k"]
+
+[node name="Renad_Level" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_u3y5k")]

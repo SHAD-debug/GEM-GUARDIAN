@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://dr0lt1p84bafo"]
+
+[ext_resource type="Script" uid="uid://kphkea4ahlk" path="res://renad_level/firepot.gd" id="1_4ofyr"]
+[ext_resource type="Texture2D" uid="uid://cptnhsi2hdv88" path="res://assets/Traps/Fire/Hit (16x32).png" id="2_5tip5"]
+[ext_resource type="Texture2D" uid="uid://cw2wow6npmy8n" path="res://assets/Traps/Fire/Off.png" id="3_hpfk4"]
+[ext_resource type="Texture2D" uid="uid://be8s5adgg4wlw" path="res://assets/Traps/Fire/On (16x32).png" id="4_aqxsp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ofyr"]
+atlas = ExtResource("2_5tip5")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpfk4"]
+atlas = ExtResource("4_aqxsp")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqxsp"]
+atlas = ExtResource("4_aqxsp")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3req"]
+atlas = ExtResource("4_aqxsp")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m3req"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ofyr")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hpfk4")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpfk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqxsp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3req")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ofyr"]
+size = Vector2(17, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tip5"]
+size = Vector2(17, 13)
+
+[node name="firepot" type="Area2D"]
+script = ExtResource("1_4ofyr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -23.75)
+scale = Vector2(1.0625, 0.984375)
+sprite_frames = SubResource("SpriteFrames_m3req")
+animation = &"on"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -30)
+shape = SubResource("RectangleShape2D_4ofyr")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -14.5)
+shape = SubResource("RectangleShape2D_5tip5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
