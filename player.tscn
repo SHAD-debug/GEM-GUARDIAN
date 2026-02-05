@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cynm2cv6idelu"]
+
+[ext_resource type="Script" uid="uid://csxrxhee5r37d" path="res://Players/player.gd" id="1_ky5qa"]
+[ext_resource type="PackedScene" uid="uid://dbdusilb3mws1" path="res://assets/game_over.tscn" id="2_fq5u1"]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_ky5qa")
+game_over_scene = ExtResource("2_fq5u1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
